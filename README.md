@@ -22,3 +22,126 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+## 概要
+このREADMEは、フリマアプリ（例：https://furima2020.herokuapp.com/）を模倣したデータベース設計を示しています。  
+ユーザー登録、商品出品、コメント投稿、購入機能を想定しています。
+
+---
+
+## ER 図 概要
+- **User（ユーザー）**: 出品・購入・コメントを行う
+- **Item（商品）**: 出品された商品情報
+- **Comment（コメント）**: 商品へのコメント
+- **Order（購入情報）**: 購入時の支払・配送情報
+
+---
+
+## テーブル設計
+
+### users テーブル
+| カラム名 | 型 | 制約 |
+|-----------|----|------|
+| nickname | string | null: false |
+| email | string | null: false, unique: true |
+| last_name | string | null: false |
+| first_name | string | null: false |
+| birthday | date | null: false |
+| created_at / updated_at | datetime |  |  |
+
+**Association**
+- has_many :orders
+- has_many :items
+- has_many :comments
+
+---
+
+### items テーブル
+| カラム名 | 型 | 制約 |
+|-----------|----|------|
+| image | string | null: false |
+| name | string | null: false |
+| description | text | null: false |
+| category | string | null: false |
+| condition | string | null: false |
+| shipping_fee | string | null: false |
+| prefecture | string | null: false |
+| shipping_days | string | null: false |
+| price | integer | null: false |
+| sold_out | boolean | default: false |
+| user_id | references | foreign_key: true |
+| created_at / updated_at | datetime |  |  |
+
+**Association**
+- belongs_to :user
+- has_many :comments
+- has_one :order
+
+---
+
+### comments テーブル
+| カラム名 | 型 | 制約 |
+|-----------|----|------|
+| text | text | null: false |
+| user_id | references | foreign_key: true |
+| item_id | references | foreign_key: true |
+| created_at / updated_at | datetime |  |  |
+
+**Association**
+- belongs_to :user
+- belongs_to :item
+
+---
+
+### orders テーブル
+| カラム名 | 型 | 制約 |
+|-----------|----|------|
+| card_number | string | null: false |
+| card_expiration | string | null: false |
+| card_cvc | string | null: false |
+| postal_code | string | null: false |
+| city | string | null: false |
+| address | string | null: false |
+| detail_address | string |  |
+| phone | string | null: false |
+| user_id | references | foreign_key: true |
+| item_id | references | foreign_key: true |
+| created_at / updated_at | datetime |  |  |
+
+**Association**
+- belongs_to :item
+- belongs_to :user
+
+---
+
+## リレーション概要
+```
+User has_many Items
+User has_many Orders
+User has_many Comments
+
+Item belongs_to User
+Item has_many Comments
+Item has_one Order
+
+Comment belongs_to User
+Comment belongs_to Item
+
+Order belongs_to User
+Order belongs_to Item
+```
+
+---
+
+## 注意事項
+- `orders` テーブルのカード情報は実際の運用ではDB保存禁止（トークン化対応推奨）。
+- `sold_out` カラムは購入済み判定フラグ。
+- 外部キー制約は `foreign_key: true` を付与。
+- `price` には数値制限（例: ¥300〜¥9,999,999）を設定。
+
+---
+
+## 今後の拡張例
+- カテゴリテーブル（`categories`）の追加
+- 配送情報テーブル（`shipping_addresses`）の追加
+- トークン決済（Stripe対応）
