@@ -46,6 +46,8 @@ Things you may want to cover:
 | email | string | null: false, unique: true |
 | last_name | string | null: false |
 | first_name | string | null: false |
+| last_name _kana| string | null: false |
+| first_name_kana| string | null: false |
 | birthday | date | null: false |
 | created_at / updated_at | datetime |  |  |
 
@@ -59,23 +61,27 @@ Things you may want to cover:
 ### items テーブル
 | カラム名 | 型 | 制約 |
 |-----------|----|------|
-| image | string | null: false |
 | name | string | null: false |
 | description | text | null: false |
-| category | string | null: false |
-| condition | string | null: false |
-| shipping_fee | string | null: false |
-| prefecture | string | null: false |
-| shipping_days | string | null: false |
 | price | integer | null: false |
-| sold_out | boolean | default: false |
-| user_id | references | foreign_key: true |
-| created_at / updated_at | datetime |  |  |
+| user | references | foreign_key: true |
+| created_at / updated_at | datetime |
+| category_id      | integer | null: false |
+| condition_id     | integer | null: false |
+| shipping_fee_id  | integer | null: false |
+| prefecture_id    | integer | null: false |
+| shipping_days_id | integer | null: false |  |  |
 
 **Association**
 - belongs_to :user
 - has_many :comments
 - has_one :order
+  belongs_to :category
+  belongs_to :condition
+  belongs_to :shipping_fee
+  belongs_to :prefecture
+  belongs_to :shipping_days
+  has_one_attached :image,
 
 ---
 
@@ -96,9 +102,6 @@ Things you may want to cover:
 ### orders テーブル
 | カラム名 | 型 | 制約 |
 |-----------|----|------|
-| card_number | string | null: false |
-| card_expiration | string | null: false |
-| card_cvc | string | null: false |
 | postal_code | string | null: false |
 | city | string | null: false |
 | address | string | null: false |
@@ -145,3 +148,6 @@ Order belongs_to Item
 - カテゴリテーブル（`categories`）の追加
 - 配送情報テーブル（`shipping_addresses`）の追加
 - トークン決済（Stripe対応）
+
+
+
