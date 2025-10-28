@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class DeviseCreateUsers < ActiveRecord::Migration[7.1]
-  def change
+def change
     create_table :users do |t|
       ## Database authenticatable
       t.string :nickname,           null: false
@@ -28,5 +28,5 @@ class DeviseCreateUsers < ActiveRecord::Migration[7.1]
     # Indexes（検索・一意性制約）
     add_index :users, :email,                unique: true
     add_index :users, :reset_password_token, unique: true
-  end
+
 end
