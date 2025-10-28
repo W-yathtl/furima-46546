@@ -9,7 +9,6 @@ development:
   password:
   host: localhost
   database: ajax_app_rails7_development
-  database: furima_46546_development
 
 test:
   <<: *default
@@ -18,7 +17,6 @@ test:
   password:
   host: localhost
   database: ajax_app_rails7_test
-  database: furima_46546_test
 
 production:
   <<: *default
