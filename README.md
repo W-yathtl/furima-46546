@@ -74,19 +74,6 @@
 
 ---
 
-### comments テーブル
-
-| カラム名 | 型 | 制約 |
-|-----------|------|------------|
-| user | references | null: false, foreign_key: true |
-| item | references | null: false, foreign_key: true |
-
-**Association**
-- belongs_to :user  
-- belongs_to :item  
-- has_one :order  
-
----
 
 ### purchase_managements テーブル
 
