@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
       :first_name_kana,
       :birthday
     ])
-  
+  end
 
   private
 
