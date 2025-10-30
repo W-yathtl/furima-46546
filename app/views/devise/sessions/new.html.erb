@@ -8,10 +8,14 @@
       </h1>
     </div>
 
-    <div class='login-flash-message'>
-      <%= flash[:notice] %>
-      <%= flash[:alert] %>
-    </div>
+<div class='login-flash-message'>
+  <% if flash[:notice] %>
+    <%= flash[:notice] %>
+  <% elsif flash[:alert] %>
+    <%# Deviseの翻訳が missing の場合に英語を表示する %>
+    <%= flash[:alert].include?("Translation missing") ? "Invalid email or password." : flash[:alert] %>
+  <% end %>
+</div>
 
     <!-- メールアドレス -->
     <div class="form-group">

@@ -8,7 +8,7 @@ class User < ApplicationRecord
   validates :last_name, :first_name, :last_name_kana, :first_name_kana, :birthday, presence: true
 
   # 名前：全角（漢字・ひらがな・カタカナ）
-  validates :last_name, :first_name, format: { with: /\A[ぁ-んァ-ン一-龥々]+\z/, message: 'は全角（漢字・ひらがな・カタカナ）で入力してください' }
+  validates :last_name, :first_name, format: { with: /\A[ぁ-んァ-ヶ一-龥々]+\z/, message: 'は全角（漢字・ひらがな・カタカナ）で入力してください' }
 
   # カナ：全角カタカナ
   validates :last_name_kana, :first_name_kana, format: { with: /\A[ァ-ヶー－]+\z/, message: 'は全角カタカナで入力してください' }

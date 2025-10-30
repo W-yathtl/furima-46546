@@ -18,6 +18,13 @@ RSpec.describe User, type: :model do
       end
     end
 
+    it 'is invalid when password includes full-width characters' do
+        @user.password = 'Ａbc123' # 全角Aを含む
+        @user.password_confirmation = 'Ａbc123'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password は半角英数字を両方含めて入力してください")
+      end
+
     context 'when registration fails' do
       it 'is invalid without a nickname' do
         @user.nickname = ''
