@@ -22,7 +22,7 @@ class Item < ApplicationRecord
     validates :image
   end
 
-  # ActiveHash のidが1（---）の時は登録できないようにする
+  # ActiveHash のidが1（---）の時は登録できない
   with_options numericality: { other_than: 1, message: "can't be blank" } do
     validates :category_id
     validates :condition_id
@@ -30,4 +30,12 @@ class Item < ApplicationRecord
     validates :prefecture_id
     validates :shipping_day_id
   end
+
+  # 価格の範囲バリデーション
+  validates :price, numericality: { 
+    only_integer: true, 
+    greater_than_or_equal_to: 300, 
+    less_than_or_equal_to: 9_999_999, 
+    message: "は¥300〜¥9,999,999の間で入力してください" 
+  }
 end
