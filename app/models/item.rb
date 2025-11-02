@@ -4,7 +4,7 @@ class Item < ApplicationRecord
 
   # Association
   belongs_to :user
-  has_one :purchase_management
+  # has_one :purchase_management
 
   # ActiveHash の関連付け
   extend ActiveHash::Associations::ActiveRecordExtensions
