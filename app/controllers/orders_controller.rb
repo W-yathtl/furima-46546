@@ -1,7 +1,8 @@
 class OrdersController < ApplicationController
-  before_action :authenticate_user!
   before_action :set_item, only: [:index, :create]
-  before_action :redirect_if_owner_or_sold, only: [:index, :create]
+  before_action :redirect_if_sold, only: [:index, :create]
+  before_action :authenticate_user!
+  before_action :redirect_if_owner, only: [:index, :create]
 
   def index
     gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
@@ -22,6 +23,10 @@ class OrdersController < ApplicationController
  
   private
 
+  # def order_params
+  #   params.require(:order).permit(:price).merge(token: params[:token])
+  # end
+
   def set_item
     @item = Item.find(params[:item_id])
   end
@@ -35,7 +40,11 @@ class OrdersController < ApplicationController
     Payjp::Charge.create(amount: @item.price, card: purchase_management_params[:token], currency: 'jpy')
   end
 
-  def redirect_if_owner_or_sold
-    redirect_to root_path if current_user.id == @item.user_id || @item.purchase_management.present?
+  def redirect_if_sold
+    redirect_to root_path if @item.purchase_management.present?
+  end
+
+  def redirect_if_owner
+    redirect_to root_path if current_user.id == @item.user_id
   end
 end

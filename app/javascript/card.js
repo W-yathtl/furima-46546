@@ -1,4 +1,6 @@
- if (document.getElementById('charge-form') == null) return;
+const pay = () => {
+  console.log("ok")
+  if (document.getElementById('charge-form') == null) return;
 
   const payjp = Payjp(gon.public_key); // PAY.JPテスト公開鍵
   const elements = payjp.elements();
@@ -31,6 +33,5 @@
   });
 };
 
-window.addEventListener("load", pay);
 window.addEventListener("turbo:load", pay);
 window.addEventListener("turbo:render", pay);

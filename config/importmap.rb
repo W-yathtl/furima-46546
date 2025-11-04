@@ -6,4 +6,6 @@ pin "@hotwired/stimulus", to: "stimulus.min.js"
 pin "@hotwired/stimulus-loading", to: "stimulus-loading.js"
 pin_all_from "app/javascript/controllers", under: "controllers"
 
-pin "item_price"
+pin "card", to: "card.js"
+pin "item_price", to: "item_price.js"
+pin "payjp", to: "https://js.pay.jp/v2/pay.js"
