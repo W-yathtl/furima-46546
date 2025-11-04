@@ -3,5 +3,7 @@ Rails.application.routes.draw do
  # ルートパスにアクセスしてもindexメソッドでトップページにアクセスするように設定
   root to: 'items#index'
 
-  resources :items
+    resources :items, except: [:destroy] do
+    resources :orders, only: [:index, :create]
+  end
 end
