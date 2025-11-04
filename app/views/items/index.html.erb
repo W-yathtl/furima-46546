@@ -139,7 +139,9 @@
             <% end %>
 
             <%# 商品が売れていれば sold out を表示（後で実装） %>
-            <%# <div class='sold-out'><span>Sold Out!!</span></div> %>
+            <% if item.purchase_management.present? %>
+              <div class='sold-out'><span>Sold Out!!</span></div>
+            <% end %>>
           </div>
 
           <div class='item-info'>
