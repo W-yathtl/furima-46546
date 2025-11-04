@@ -4,7 +4,7 @@ class ItemsController < ApplicationController
   before_action :redirect_if_not_owner, only: [:edit, :update]
 
   def index
-    @items = Item.all.order(created_at: :desc)
+    @items = Item.includes(:user).order(created_at: :desc)
   end
 
   def new
