@@ -12,7 +12,7 @@ class Item < ApplicationRecord
 
   # Association
   belongs_to :user
-  has_one :purchase_management
+  # has_one :purchase_management
 
   # バリデーション
   with_options presence: true do

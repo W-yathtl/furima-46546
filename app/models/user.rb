@@ -4,7 +4,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :purchase_managements
-  has_many :items
   
   # バリデーション
   validates :nickname, presence: true

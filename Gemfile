@@ -83,6 +83,3 @@ gem 'devise'
 
   gem 'rails-i18n', '~> 7.0'
 
-gem 'gon'
-
-gem 'dotenv-rails'
