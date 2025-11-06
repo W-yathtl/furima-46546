@@ -36,14 +36,12 @@ class OrdersController < ApplicationController
   end
 
   def pay_item
-  Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
-  Payjp.default_options = { ssl_ca_file: "/etc/ssl/certs/ca-certificates.crt" }
-
-  Payjp::Charge.create(
-    amount: @item.price,
-    card: purchase_management_params[:token],
-    currency: 'jpy'
-  )
+    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+    Payjp::Charge.create(
+      amount: @item.price,
+      card: purchase_management_params[:token],
+      currency: 'jpy'
+    )
   end
 
   def redirect_if_sold
