@@ -19,7 +19,7 @@
       </div>
     </div>
     <%# /商品購入確認 %>
-
+    <%= include_gon %>
     <%= form_with model: @order_purchase_management, url: item_orders_path(@item), id: 'charge-form', local: true do |f| %>
     <%= render 'shared/error_messages', model: f.object %>
     <%# カード情報入力 %>
