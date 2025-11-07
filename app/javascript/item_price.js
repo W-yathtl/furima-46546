@@ -44,6 +44,7 @@
   }
 
   // Turbo がある環境では turbo:load と turbo:render の両方を監視
+  // turbo:load は初回読み込みとページ遷移の両方で発火するため、これで十分
   document.addEventListener("turbo:load", initPriceCalculation);
   document.addEventListener("turbo:render", initPriceCalculation);
 

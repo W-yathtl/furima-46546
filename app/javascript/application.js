@@ -1,6 +1,4 @@
-// Configure your import map in config/importmap.rb. Read more: https://github.com/rails/importmap-rails
 import "@hotwired/turbo-rails"
 import "controllers"
-
-import "item_price"
-import "card"
+import "./item_price"  // 相対パス
+import "./card"   
