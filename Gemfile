@@ -86,3 +86,5 @@ gem 'devise'
 gem 'gon'
 gem 'payjp'
 gem 'dotenv-rails'
+
+gem "aws-sdk-s3", require: false
