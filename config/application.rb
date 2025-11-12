@@ -22,12 +22,7 @@ module Furima46546
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
-    config.active_storage.variant_processor = :mini_magick
+     config.i18n.default_locale = :en
   end
 end
 
-module YourAppName
-  class Application < Rails::Application
-    config.i18n.default_locale = :en
-  end
-end
