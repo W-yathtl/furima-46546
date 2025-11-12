@@ -370,6 +370,7 @@ DEPENDENCIES
   aws-sdk-s3
   bootsnap
   capybara
+  cgi (>= 0.4.0)
   debug
   devise
   dotenv-rails

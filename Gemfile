@@ -90,3 +90,5 @@ group :production do
 end
 
 gem 'nokogiri', force_ruby_platform: true
+
+gem "cgi", ">= 0.4.0"
